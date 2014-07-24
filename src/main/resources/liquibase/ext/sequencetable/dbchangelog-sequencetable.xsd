@@ -24,5 +24,13 @@
             <xsd:attribute name="alwaysUse" type="xsd:boolean" default="false"/>
         </xsd:complexType>
     </xsd:element>
+    
+    <xsd:element name="sequenceTableExists">
+        <xsd:complexType>
+            <xsd:attribute name="catalogName" type="xsd:string"/>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+            <xsd:attribute name="sequenceName" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
 
 </xsd:schema>
