@@ -14,3 +14,6 @@ For more information, see the [project wiki](https://github.com/liquibase/liquib
 ### Issue Tracking
 
 Any issues can be logged in the [Github project issue tracker](https://github.com/liquibase/liquibase-sequencetable/issues)
+
+## MyChanges :
+- use next_val as column name instead of next_value in order to be directly compatible with Hibernate sequence-style table

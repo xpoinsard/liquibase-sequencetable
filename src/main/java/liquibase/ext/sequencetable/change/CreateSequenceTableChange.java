@@ -16,11 +16,17 @@ import java.math.BigInteger;
         priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class CreateSequenceTableChange extends AbstractChange {
 
+	 /**
+     * The default column name if tables are used for the genericSequence.
+     * We are using next_val instead of next_value to be directly compatible with Hibernate 
+     */
+    private static final String SQ_STYLE_TABLE_NEXTVAL_COL = "next_val";
+
     private String catalogName;
     private String schemaName;
     private String tableName;
     private BigInteger startValue = BigInteger.ONE;
-    private String nextValueColumnName = "next_value";
+    private String nextValueColumnName = SQ_STYLE_TABLE_NEXTVAL_COL;
 
     private boolean alwaysUse = false;
 

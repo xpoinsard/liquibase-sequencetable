@@ -24,12 +24,6 @@ public class CreateUnsupportedSequenceGenerator extends CreateSequenceGenerator 
         return !database.supportsSequences();
     }
 
-    /**
-     * The default column name if tables are used for the genericSequence.
-     */
-    private static final String SQ_STYLE_TABLE_NEXTVAL_COL = "next_value";
-
-
     @Override
     public Sql[] generateSql(CreateSequenceStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
         CreateSequenceTableChange change = new CreateSequenceTableChange();
