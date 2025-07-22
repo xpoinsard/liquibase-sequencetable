@@ -14,6 +14,7 @@ import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.sqlgenerator.core.CreateSequenceGenerator;
+import liquibase.sqlgenerator.core.DropSequenceGenerator;
 import liquibase.statement.SqlStatement;
 import liquibase.statement.core.CreateSequenceStatement;
 import liquibase.statement.core.DropSequenceStatement;
@@ -23,14 +24,12 @@ import liquibase.statement.core.DropTableStatement;
 /**
  * Transparently converts dropSequence calls to dropSequenceTable calls
  */
-public class DropUnsupportedSequenceGenerator extends CreateSequenceGenerator {
+public class DropUnsupportedSequenceGenerator extends DropSequenceGenerator {
 
-    @Override
     public boolean supports(CreateSequenceStatement statement, Database database) {
         return !database.supportsSequences();
     }
 
-    @Override
     public Sql[] generateSql(CreateSequenceStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
         DropSequenceTableChange change = new DropSequenceTableChange();
         change.setCatalogName(statement.getCatalogName());
@@ -46,6 +45,11 @@ public class DropUnsupportedSequenceGenerator extends CreateSequenceGenerator {
         }
 
         return sql.toArray(new Sql[sql.size()]);
+    }
+    
+    @Override
+    public int getPriority() {
+        return super.getPriority()+1;
     }
 
 }

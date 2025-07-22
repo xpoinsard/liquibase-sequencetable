@@ -42,4 +42,9 @@ public class CreateUnsupportedSequenceGenerator extends CreateSequenceGenerator 
 
         return sql.toArray(new Sql[sql.size()]);
     }
+    
+    @Override
+    public int getPriority() {
+        return super.getPriority()+1;
+    }
 }
